@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/travel-advisor-app/static/css/main.073c9b0a.css",
-    "main.js": "/travel-advisor-app/static/js/main.8744e35a.js",
-    "static/js/787.d06b42a6.chunk.js": "/travel-advisor-app/static/js/787.d06b42a6.chunk.js",
-    "index.html": "/travel-advisor-app/index.html",
-    "main.073c9b0a.css.map": "/travel-advisor-app/static/css/main.073c9b0a.css.map",
-    "main.8744e35a.js.map": "/travel-advisor-app/static/js/main.8744e35a.js.map",
-    "787.d06b42a6.chunk.js.map": "/travel-advisor-app/static/js/787.d06b42a6.chunk.js.map"
+    "main.css": "/travel-app/static/css/main.073c9b0a.css",
+    "main.js": "/travel-app/static/js/main.b0ca575d.js",
+    "static/js/787.d06b42a6.chunk.js": "/travel-app/static/js/787.d06b42a6.chunk.js",
+    "index.html": "/travel-app/index.html",
+    "main.073c9b0a.css.map": "/travel-app/static/css/main.073c9b0a.css.map",
+    "main.b0ca575d.js.map": "/travel-app/static/js/main.b0ca575d.js.map",
+    "787.d06b42a6.chunk.js.map": "/travel-app/static/js/787.d06b42a6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.8744e35a.js"
+    "static/js/main.b0ca575d.js"
   ]
 }
