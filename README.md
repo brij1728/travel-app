@@ -48,9 +48,15 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Packages requires 
 
 npm install react-router-dom@6
+
 npm i axios
+
 npm install @mui/material @emotion/react @emotion/styled
+
 npm install @mui/icons-material
+
 npm install @react-google-maps/api
+
 npm install --save @mui/styles --legacy-peer-deps
+
 npm install --save google-map-react --legacy-peer-deps
