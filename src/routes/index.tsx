@@ -7,7 +7,7 @@ import { Home } from "../pages/Home";
 export const RouteComponent = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/travel-app" element={<Home />} />
     </Routes>
   );
 };
