@@ -1,8 +1,9 @@
 import * as React from "react";
 
+import { IBounds, ICoordinates } from "../../components/Map/types";
+
 import { Grid } from "@mui/material";
 import { Header } from "../../components/Header";
-import { ICoordinates } from "../../components/Map/types";
 import { List } from "../../components/List";
 import { Map } from "../../components/Map";
 import { getPlacesData } from "../../api";
@@ -21,7 +22,7 @@ export const Home = () => {
     lat: 0,
     lng: 0,
   });
-  const [bounds, setBounds] = React.useState<number | null>(null);
+  const [bounds, setBounds] = React.useState<IBounds>({ ne: null, sw: null });
 
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -31,19 +32,21 @@ export const Home = () => {
     );
   }, []);
 
-  // React.useEffect(() => {
-  //   getPlacesData().then((data) => {
-  //     console.log(data);
-  //     setPlaces(places);
-  //   });
-  // }, [bounds, coordinates]);
+  React.useEffect(() => {
+    console.log(bounds, coordinates);
+
+    getPlacesData(bounds.sw, bounds.ne).then((data) => {
+      // console.log(data);
+      setPlaces(Object.values(data));
+    });
+  }, [bounds, coordinates]);
 
   return (
     <>
       <Header />
       <Grid container spacing={3} width="100%">
         <Grid item xs={12} md={4}>
-          <List />
+          <List places={places} />
         </Grid>
         <Grid item xs={12} md={8}>
           <Map

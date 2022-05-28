@@ -11,12 +11,13 @@ export const Map: React.FC<IMap> = ({
   setBounds,
 }: IMap) => {
   const apiKey = "AIzaSyAvMbG9aP_j_39rknHkFcgdLuMBXXwWNQQ";
+
   const classes = useStyles();
   const isMobile = useMediaQuery("(min-width: 600px)");
 
   const onChange = (e: any) => {
     setCoordinates({ lat: e.center.lat, lng: e.center.lng });
-    setBounds(e.marginBounds.ne, e.marginBounds.sw);
+    setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
   };
 
   return (
