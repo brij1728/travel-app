@@ -35,10 +35,14 @@ export const Home = () => {
   React.useEffect(() => {
     console.log(bounds, coordinates);
 
-    getPlacesData(bounds.sw, bounds.ne).then((data) => {
-      // console.log(data);
-      setPlaces(data);
-    });
+    getPlacesData(bounds.sw, bounds.ne)
+      .then((data) => {
+        // console.log(data);
+        setPlaces(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [bounds, coordinates]);
 
   return (
