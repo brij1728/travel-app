@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 import { IPlaceDetails } from "./types";
 import { useStyles } from "./styles";
@@ -27,6 +27,35 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
           <Typography gutterBottom variant="h5">
             {place.name}
           </Typography>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle1">Price</Typography>
+            <Typography gutterBottom variant="subtitle1">
+              {place.price_level}
+            </Typography>
+          </Box>
+          <Box display="flex" justifyContent="space-betyween">
+            <Typography variant="subtitle1">Ranking</Typography>
+            <Typography gutterBottom variant="subtitle1">
+              {place.ranking}
+            </Typography>
+          </Box>
+          {place?.awards?.map((award) => {
+            return (
+              <>
+                <Box
+                  my={1}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <img src={award.images.small} alt={award.display_image} />
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {award.display_name}
+                  </Typography>
+                </Box>
+              </>
+            );
+          })}
         </CardContent>
       </Card>
     </>

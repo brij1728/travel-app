@@ -37,7 +37,7 @@ export const Home = () => {
 
     getPlacesData(bounds.sw, bounds.ne).then((data) => {
       // console.log(data);
-      setPlaces(Object.values(data));
+      setPlaces(data);
     });
   }, [bounds, coordinates]);
 
