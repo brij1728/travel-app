@@ -33,4 +33,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
     height: "75vh",
     overflow: "auto",
   },
+  loading: {},
 }));
