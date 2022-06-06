@@ -2,12 +2,13 @@ import * as React from "react";
 
 import {
   CircularProgress,
+  Container,
   FormControl,
   Grid,
-  InputLabel,
   MenuItem,
   Select,
   Typography,
+  styled,
 } from "@mui/material";
 import { createRef, useEffect, useState } from "react";
 
@@ -15,14 +16,27 @@ import { IPlaces } from "./types";
 import { PlaceDetails } from "../PlaceDetails";
 import { useStyles } from "./styles";
 
+const ListWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  // position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
 export const List: React.FC<IPlaces> = ({
   places,
   childClicked,
   isLoading,
+  type,
+  setType,
+  rating,
+  setRating,
 }: IPlaces) => {
   const classes = useStyles();
-  const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("");
+
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
@@ -40,57 +54,65 @@ export const List: React.FC<IPlaces> = ({
   };
 
   return (
-    <>
-      <div className={classes.container}>
-        <Typography variant="h5">
-          Restaurants, Hotels & Attractions around you
-        </Typography>
-        {isLoading ? (
-          <div className={classes.loading}>
-            <CircularProgress size="5rem" />
-          </div>
-        ) : (
-          <>
-            <FormControl className={classes.formControl} margin="normal">
-              <InputLabel>Type</InputLabel>
+    <Container>
+      <Typography variant="h5">
+        Restaurants, Hotels & Attractions around you
+      </Typography>
+      {isLoading ? (
+        <div className={classes.loading}>
+          <CircularProgress size="5rem" />
+        </div>
+      ) : (
+        <>
+          <Container>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
               <Select
                 value={type}
                 onChange={onChangeType}
                 className={classes.selectType}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
               >
+                <MenuItem value="">
+                  {" "}
+                  <em>Type</em>
+                </MenuItem>
                 <MenuItem value="restaurants">Restaurants</MenuItem>
                 <MenuItem value="hotels">Hotels</MenuItem>
                 <MenuItem value="attractions">Attractions</MenuItem>
               </Select>
             </FormControl>
-            <FormControl className={classes.formControl} margin="normal">
-              <InputLabel>Rating</InputLabel>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
               <Select value={rating} onChange={onChangeRating}>
-                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value="rating">
+                  {" "}
+                  <em>Select Rating</em>
+                </MenuItem>
+                <MenuItem value="all">All</MenuItem>
                 <MenuItem value={3}>Above 3.0</MenuItem>
                 <MenuItem value={4}>Above 4.0</MenuItem>
                 <MenuItem value={4.5}>Above 4.5</MenuItem>
               </Select>
             </FormControl>
+          </Container>
 
-            <Grid container spacing={3} className={classes.list}>
-              {places?.map((place, index) => {
-                return (
-                  <>
-                    <Grid ref={elRefs[index]} item key={index}>
-                      <PlaceDetails
-                        place={place}
-                        selected={Number(childClicked === index)}
-                        refProp={elRefs[index]}
-                      />
-                    </Grid>
-                  </>
-                );
-              })}
-            </Grid>
-          </>
-        )}
-      </div>
-    </>
+          <Grid container spacing={3} className={classes.list} marginTop="30px">
+            {places?.map((place, index) => {
+              return (
+                <>
+                  <Grid ref={elRefs[index]} item key={index}>
+                    <PlaceDetails
+                      place={place}
+                      selected={Number(childClicked === index)}
+                      refProp={elRefs[index]}
+                    />
+                  </Grid>
+                </>
+              );
+            })}
+          </Grid>
+        </>
+      )}
+    </Container>
   );
 };
