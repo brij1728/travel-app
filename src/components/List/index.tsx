@@ -6,23 +6,12 @@ import {
   MenuItem,
   Select,
   Typography,
-  styled,
 } from '@mui/material';
 import { createRef, useEffect, useState } from 'react';
 
 import { PlaceDetails } from '../PlaceDetails';
 import { useStyles } from './styles';
 import { IPlaces } from './types';
-
-const ListWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  // position: "absolute",
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
 
 export const List: React.FC<IPlaces> = ({
   places,

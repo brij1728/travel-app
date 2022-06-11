@@ -1,5 +1,4 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { useState } from 'react';
 
 import { SearchInput } from '../SearchInput';
 import { useStyles } from './styles';
@@ -7,15 +6,6 @@ import { IHeader } from './types';
 
 export const Header: React.FC<IHeader> = ({ setCoordinates }: IHeader) => {
   const classes = useStyles();
-
-  const [autoComplete, setAutocomplete] = useState(null);
-
-  const onLoad = (autoC: any) => setAutocomplete(autoC);
-  // const onPlaceChanged = () => {
-  //   const lat = autoComplete.getPlace().geometry.location.lat();
-  //   const lng = autoComplete.getPlace().gemeters.location.lng();
-  //   setCoordinates({lat, lng});
-  // };
 
   return (
     <AppBar position="static">
