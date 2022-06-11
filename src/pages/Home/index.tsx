@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { IBounds, ICoordinates } from "../../components/Map/types";
 import { useEffect, useState } from "react";
 

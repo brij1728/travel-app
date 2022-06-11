@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Box, InputBase, alpha, styled } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";

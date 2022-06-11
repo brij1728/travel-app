@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { AppBar, Box, InputBase, Toolbar, Typography } from "@mui/material";
 
 import { Autocomplete } from "@react-google-maps/api";

@@ -1,7 +1,5 @@
 import "./App.css";
 
-import * as React from "react";
-
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
 import { RouteComponent } from "./routes";

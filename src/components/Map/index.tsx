@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Paper, Rating, Typography, useMediaQuery } from "@mui/material";
 
 import GoogleMapReact from "google-map-react";
