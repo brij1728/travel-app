@@ -1,3 +1,5 @@
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
 import {
   Box,
   Button,
@@ -8,12 +10,10 @@ import {
   Chip,
   Rating,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
-import { IPlaceDetails } from "./types";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PhoneIcon from "@mui/icons-material/Phone";
-import { useStyles } from "./styles";
+import { useStyles } from './styles';
+import { IPlaceDetails } from './types';
 
 export const PlaceDetails: React.FC<IPlaceDetails> = ({
   place,
@@ -25,7 +25,7 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
   const classes = useStyles();
 
   if (selected)
-    refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   return (
     <>
       <Card elevation={6}>
@@ -34,7 +34,7 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
           image={
             place.photo
               ? place.photo.images.large.url
-              : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.theworlds50best.com%2Flist%2F1-50&psig=AOvVaw31aq4JKHZI2273hRC7bgQB&ust=1653820553998000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCNC41Or_gfgCFQAAAAAdAAAAABAD"
+              : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.theworlds50best.com%2Flist%2F1-50&psig=AOvVaw31aq4JKHZI2273hRC7bgQB&ust=1653820553998000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCNC41Or_gfgCFQAAAAAdAAAAABAD'
           }
           title={place.name}
         />
@@ -109,14 +109,14 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
             <Button
               size="small"
               color="primary"
-              onClick={() => window.open(place.web_url, "_black")}
+              onClick={() => window.open(place.web_url, '_black')}
             >
               Trip Advisor
             </Button>
             <Button
               size="small"
               color="primary"
-              onClick={() => window.open(place.website, "_black")}
+              onClick={() => window.open(place.website, '_black')}
             >
               Website
             </Button>

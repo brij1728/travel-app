@@ -1,18 +1,15 @@
-import "./App.css";
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-
-import { RouteComponent } from "./routes";
-import { red } from "@mui/material/colors";
+import './App.css';
+import { RouteComponent } from './routes';
 
 const theme = createTheme({
   palette: {
-    // type: "light",
     primary: {
-      main: "#3f51b5",
+      main: '#3f51b5',
     },
     secondary: {
-      main: "#f50057",
+      main: '#f50057',
     },
   },
 });

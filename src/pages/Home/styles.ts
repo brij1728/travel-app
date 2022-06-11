@@ -1,3 +1,3 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({}));

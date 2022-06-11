@@ -7,21 +7,21 @@ import {
   Select,
   Typography,
   styled,
-} from "@mui/material";
-import { createRef, useEffect, useState } from "react";
+} from '@mui/material';
+import { createRef, useEffect, useState } from 'react';
 
-import { IPlaces } from "./types";
-import { PlaceDetails } from "../PlaceDetails";
-import { useStyles } from "./styles";
+import { PlaceDetails } from '../PlaceDetails';
+import { useStyles } from './styles';
+import { IPlaces } from './types';
 
-const ListWrapper = styled("div")(({ theme }) => ({
+const ListWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
+  height: '100%',
   // position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 export const List: React.FC<IPlaces> = ({
@@ -42,7 +42,7 @@ export const List: React.FC<IPlaces> = ({
       .fill(1)
       .map((_, i) => elRefs[i] || createRef());
     setElRefs(refs);
-  }, [places]);
+  }, [elRefs, places]);
 
   const onChangeType = (event: any) => {
     setType(event.target.value);
@@ -69,10 +69,10 @@ export const List: React.FC<IPlaces> = ({
                 onChange={onChangeType}
                 className={classes.selectType}
                 displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
+                inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value="">
-                  {" "}
+                  {' '}
                   <em>Type</em>
                 </MenuItem>
                 <MenuItem value="restaurants">Restaurants</MenuItem>
@@ -83,7 +83,7 @@ export const List: React.FC<IPlaces> = ({
             <FormControl sx={{ m: 1, minWidth: 120 }}>
               <Select value={rating} onChange={onChangeRating}>
                 <MenuItem value="rating">
-                  {" "}
+                  {' '}
                   <em>Select Rating</em>
                 </MenuItem>
                 <MenuItem value="all">All</MenuItem>

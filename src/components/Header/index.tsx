@@ -1,11 +1,9 @@
-import { AppBar, Box, InputBase, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { useState } from 'react';
 
-import { Autocomplete } from "@react-google-maps/api";
-import { IHeader } from "./types";
-import SearchIcon from "@mui/icons-material/Search";
-import { SearchInput } from "../SearchInput";
-import { useState } from "react";
-import { useStyles } from "./styles";
+import { SearchInput } from '../SearchInput';
+import { useStyles } from './styles';
+import { IHeader } from './types';
 
 export const Header: React.FC<IHeader> = ({ setCoordinates }: IHeader) => {
   const classes = useStyles();

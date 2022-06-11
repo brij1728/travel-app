@@ -1,17 +1,13 @@
-import { IBounds, ICoordinates } from "../../components/Map/types";
-import { useEffect, useState } from "react";
+import { Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-import { Grid } from "@mui/material";
-import { Header } from "../../components/Header";
-import { IDetails } from "../../components/PlaceDetails/types";
-import { List } from "../../components/List";
-import { Map } from "../../components/Map";
-import { getPlacesData } from "../../api";
-import { useStyles } from "./styles";
+import { getPlacesData } from '../../api';
+import { Header } from '../../components/Header';
+import { List } from '../../components/List';
+import { Map } from '../../components/Map';
+import { IBounds, ICoordinates } from '../../components/Map/types';
 
 export const Home = () => {
-  const classes = useStyles();
-
   const [places, setPlaces] = useState<any>([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState<ICoordinates>({
@@ -21,8 +17,8 @@ export const Home = () => {
   const [bounds, setBounds] = useState<IBounds>({ ne: null, sw: null });
 
   const [childClicked, setChildClicked] = useState(null);
-  const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("rating");
+  const [type, setType] = useState('restaurants');
+  const [rating, setRating] = useState('rating');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -36,7 +32,7 @@ export const Home = () => {
   useEffect(() => {
     const filteredPlaces = places.filter((place: any) => place.rating > rating);
     setFilteredPlaces(filteredPlaces);
-  }, [rating]);
+  }, [places, rating]);
 
   useEffect(() => {
     console.log(bounds, coordinates);

@@ -1,27 +1,27 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({
   mapContainer: {
-    height: "85vh",
-    width: "100%",
+    height: '85vh',
+    width: '100%',
   },
   paper: {
-    padding: "10px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    width: "100px",
+    padding: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '100px',
   },
 
   typography: {},
 
   markerContainer: {
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
+    position: 'absolute',
+    transform: 'translate(-50%, -50%)',
     zIndex: 1,
-    "&:hover": { zIndex: 2 },
+    '&:hover': { zIndex: 2 },
   },
   pointer: {
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 }));

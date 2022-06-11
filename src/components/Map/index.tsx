@@ -1,10 +1,10 @@
-import { Paper, Rating, Typography, useMediaQuery } from "@mui/material";
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { Paper, Rating, Typography, useMediaQuery } from '@mui/material';
+import { Marker } from '@react-google-maps/api';
+import GoogleMapReact from 'google-map-react';
 
-import GoogleMapReact from "google-map-react";
-import { IMap } from "./types";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { Marker } from "@react-google-maps/api";
-import { useStyles } from "./styles";
+import { useStyles } from './styles';
+import { IMap } from './types';
 
 export const Map: React.FC<IMap> = ({
   coordinates,
@@ -13,10 +13,10 @@ export const Map: React.FC<IMap> = ({
   places,
   setChildClicked,
 }: IMap) => {
-  const apiKey = "AIzaSyAvMbG9aP_j_39rknHkFcgdLuMBXXwWNQQ";
+  const apiKey = 'AIzaSyAvMbG9aP_j_39rknHkFcgdLuMBXXwWNQQ';
 
   const classes = useStyles();
-  const isDesktop = useMediaQuery("(min-width: 600px)");
+  const isDesktop = useMediaQuery('(min-width: 600px)');
 
   const onChange = (e: any) => {
     setCoordinates({ lat: e.center.lat, lng: e.center.lng });
@@ -67,7 +67,7 @@ export const Map: React.FC<IMap> = ({
                         src={
                           place.photo
                             ? place.photo.images.large.url
-                            : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.theworlds50best.com%2Flist%2F1-50&psig=AOvVaw31aq4JKHZI2273hRC7bgQB&ust=1653820553998000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCNC41Or_gfgCFQAAAAAdAAAAABAD"
+                            : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.theworlds50best.com%2Flist%2F1-50&psig=AOvVaw31aq4JKHZI2273hRC7bgQB&ust=1653820553998000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCNC41Or_gfgCFQAAAAAdAAAAABAD'
                         }
                         alt={place.name}
                       />
