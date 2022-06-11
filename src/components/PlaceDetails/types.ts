@@ -1,6 +1,6 @@
 export interface IPlaceDetails {
   place: IDetails;
-  selected: number;
+  selected: boolean;
   refProp: any;
 }
 
@@ -11,6 +11,7 @@ export interface IDetails {
   ranking?: string;
   awards?: IAward[];
   cuisine?: ICuisine[];
+  location_id: string;
   address: string;
   phone?: string;
   web_url: string;

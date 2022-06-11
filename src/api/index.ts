@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const getPlacesData = async (type: string, sw: any, ne: any) => {
+  console.info('getPlacesData', type, sw, ne);
   try {
     const {
       data: { data },
@@ -24,8 +25,10 @@ export const getPlacesData = async (type: string, sw: any, ne: any) => {
     return data;
   } catch (error) {
     console.log(error);
-    // if (error) {
-    //   return error.message;
-    // }
+    if (error instanceof Error) {
+      return error.message;
+    } else {
+      throw error;
+    }
   }
 };

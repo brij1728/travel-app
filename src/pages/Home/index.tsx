@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { getPlacesData } from '../../api';
 import { Header } from '../../components/Header';
@@ -9,7 +9,13 @@ import { IBounds, ICoordinates } from '../../components/Map/types';
 
 export const Home = () => {
   const [places, setPlaces] = useState<any>([]);
-  const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [rating, setRating] = useState('');
+
+  const filteredPlaces = useMemo(
+    () =>
+      !rating ? places.filter((place: any) => place.rating > rating) : places,
+    [places, rating]
+  );
   const [coordinates, setCoordinates] = useState<ICoordinates>({
     lat: 0,
     lng: 0,
@@ -18,7 +24,6 @@ export const Home = () => {
 
   const [childClicked, setChildClicked] = useState(null);
   const [type, setType] = useState('restaurants');
-  const [rating, setRating] = useState('rating');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -30,22 +35,20 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    const filteredPlaces = places.filter((place: any) => place.rating > rating);
-    setFilteredPlaces(filteredPlaces);
-  }, [places, rating]);
-
-  useEffect(() => {
     console.log(bounds, coordinates);
+    if (!type || !bounds.ne || !bounds.sw || !coordinates) {
+      return;
+    }
     setIsLoading(true);
     getPlacesData(type, bounds.sw, bounds.ne)
       .then((data) => {
-        console.log(data);
         setPlaces(data);
-        setFilteredPlaces([]);
-        setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [type, bounds, coordinates]);
 

@@ -20,7 +20,7 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
   selected,
   refProp,
 }: IPlaceDetails) => {
-  console.log(place);
+  console.log(place.location_id, selected, refProp);
 
   const classes = useStyles();
 

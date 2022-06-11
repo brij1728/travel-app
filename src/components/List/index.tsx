@@ -7,7 +7,7 @@ import {
   Select,
   Typography,
 } from '@mui/material';
-import { createRef, useEffect, useState } from 'react';
+import { createRef, useEffect, useRef } from 'react';
 
 import { PlaceDetails } from '../PlaceDetails';
 import { useStyles } from './styles';
@@ -24,13 +24,17 @@ export const List: React.FC<IPlaces> = ({
 }: IPlaces) => {
   const classes = useStyles();
 
-  const [elRefs, setElRefs] = useState([]);
+  const elRefs = useRef<{ [key: string]: React.RefObject<HTMLDivElement> }>({});
 
   useEffect(() => {
-    const refs = Array(places?.length)
-      .fill(1)
-      .map((_, i) => elRefs[i] || createRef());
-    setElRefs(refs);
+    if (!places?.length) {
+      return;
+    }
+    for (const p of places) {
+      if (!elRefs.current[p.location_id]) {
+        elRefs.current[p.location_id] = createRef();
+      }
+    }
   }, [elRefs, places]);
 
   const onChangeType = (event: any) => {
@@ -87,11 +91,15 @@ export const List: React.FC<IPlaces> = ({
             {places?.map((place, index) => {
               return (
                 <>
-                  <Grid ref={elRefs[index]} item key={index}>
+                  <Grid
+                    ref={elRefs.current[place.location_id]}
+                    item
+                    key={place.location_id}
+                  >
                     <PlaceDetails
                       place={place}
-                      selected={Number(childClicked === index)}
-                      refProp={elRefs[index]}
+                      selected={childClicked === index}
+                      refProp={elRefs.current[place.location_id]}
                     />
                   </Grid>
                 </>
