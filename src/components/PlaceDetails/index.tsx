@@ -98,20 +98,16 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
               </Box>
             );
           })}
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignContent="flex-start"
-          >
-            {place?.cuisine?.map(({ name }) => (
-              <Chip
-                key={name}
-                size="small"
-                label={name}
-                className={classes.chip}
-              />
-            ))}
-          </Box>
+
+          {place?.cuisine?.map(({ name }) => (
+            <Chip
+              key={name}
+              size="small"
+              label={name}
+              className={classes.chip}
+            />
+          ))}
+
           {place?.address && (
             <Typography
               component={Stack}
