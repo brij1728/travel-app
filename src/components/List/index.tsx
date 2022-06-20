@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 import { createRef, useEffect, useRef } from 'react';
 
+import { IPlaces } from './types';
 import { PlaceDetails } from '../PlaceDetails';
 import { useStyles } from './styles';
-import { IPlaces } from './types';
 
 export const List: React.FC<IPlaces> = ({
   places,

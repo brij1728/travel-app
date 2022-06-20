@@ -1,5 +1,3 @@
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhoneIcon from '@mui/icons-material/Phone';
 import {
   Box,
   Button,
@@ -9,11 +7,14 @@ import {
   CardMedia,
   Chip,
   Rating,
+  Stack,
   Typography,
 } from '@mui/material';
 
-import { useStyles } from './styles';
 import { IPlaceDetails } from './types';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
+import { useStyles } from './styles';
 
 export const PlaceDetails: React.FC<IPlaceDetails> = ({
   place,
@@ -43,22 +44,44 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
             {place.name}
           </Typography>
           <Box display="flex" justifyContent="space-between">
-            <Rating name="read-only" value={Number(place.rating)} readOnly />
-            <Typography gutterBottom variant="subtitle1">
-              out of {place.num_reviews}
-            </Typography>
+            {Number(place.rating) > 0 ? (
+              <>
+                <Rating
+                  name="read-only"
+                  value={Number(place.rating)}
+                  readOnly
+                />
+                <Typography gutterBottom variant="subtitle1">
+                  out of {place.num_reviews}
+                </Typography>
+              </>
+            ) : (
+              `No rating available`
+            )}
           </Box>
           <Box display="flex" justifyContent="space-between">
-            <Typography variant="subtitle1">Price</Typography>
-            <Typography gutterBottom variant="subtitle1">
-              {place.price_level}
-            </Typography>
+            {Number(place.price_level) > 0 ? (
+              <>
+                <Typography variant="subtitle1">Price</Typography>
+                <Typography gutterBottom variant="subtitle1">
+                  {place.price_level}
+                </Typography>
+              </>
+            ) : (
+              ``
+            )}
           </Box>
           <Box display="flex" justifyContent="space-betyween">
-            <Typography variant="subtitle1">Ranking</Typography>
-            <Typography gutterBottom variant="subtitle1">
-              {place.ranking}
-            </Typography>
+            {Number(place.ranking) > 0 ? (
+              <>
+                <Typography variant="subtitle1">Ranking</Typography>
+                <Typography gutterBottom variant="subtitle1">
+                  {place.ranking}
+                </Typography>
+              </>
+            ) : (
+              ``
+            )}
           </Box>
           {place?.awards?.map((award) => {
             return (
@@ -75,33 +98,49 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
               </Box>
             );
           })}
-          {place?.cuisine?.map(({ name }) => (
-            <Chip
-              key={name}
-              size="small"
-              label={name}
-              className={classes.chip}
-            />
-          ))}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignContent="flex-start"
+          >
+            {place?.cuisine?.map(({ name }) => (
+              <Chip
+                key={name}
+                size="small"
+                label={name}
+                className={classes.chip}
+              />
+            ))}
+          </Box>
           {place?.address && (
             <Typography
+              component={Stack}
+              direction="row"
               gutterBottom
               variant="subtitle2"
               color="textSecondary"
               className={classes.subtitle}
+              align="left"
+              alignItems="center"
+              justifyContent="flex-start"
             >
-              <LocationOnIcon />
+              <LocationOnIcon fontSize="small" />
               {place.address}
             </Typography>
           )}
           {place?.phone && (
             <Typography
               gutterBottom
+              component={Stack}
+              direction="row"
               variant="subtitle2"
               color="textSecondary"
               className={classes.spacing}
+              align="left"
+              alignItems="center"
+              justifyContent="flex-start"
             >
-              <PhoneIcon />
+              <PhoneIcon fontSize="small" />
               {place.phone}
             </Typography>
           )}
