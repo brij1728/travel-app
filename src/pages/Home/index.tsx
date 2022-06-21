@@ -1,21 +1,28 @@
-import { Grid } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { getPlacesData } from '../../api';
 import { Header } from '../../components/Header';
 import { List } from '../../components/List';
 import { Map } from '../../components/Map';
 import { IBounds, ICoordinates } from '../../components/Map/types';
+import { IDetails } from '../../components/PlaceDetails/types';
 
 export const Home = () => {
-  const [places, setPlaces] = useState<any>([]);
-  const [rating, setRating] = useState('');
+  const [places, setPlaces] = useState<IDetails[]>([]);
+  const [rating, setRating] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const filteredPlaces = useMemo(
-    () =>
-      !rating ? places.filter((place: any) => place.rating > rating) : places,
-    [places, rating]
-  );
+  const filteredPlaces = useMemo(() => {
+    if (!places?.length) {
+      return [];
+    }
+    if (rating) {
+      return places.filter((place) => place.rating >= rating);
+    } else {
+      return places;
+    }
+  }, [places, rating]);
   const [coordinates, setCoordinates] = useState<ICoordinates>({
     lat: 0,
     lng: 0,
@@ -29,28 +36,57 @@ export const Home = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
-        setCoordinates({ lat: latitude, lng: longitude });
+        setCoordinates({
+          lat: parseFloat(latitude.toFixed(2)),
+          lng: parseFloat(longitude.toFixed(2)),
+        });
       }
     );
   }, []);
 
+  const debounceTimeoutId = useRef<number | null>(null);
   useEffect(() => {
-    console.log(bounds, coordinates);
-    if (!type || !bounds.ne || !bounds.sw || !coordinates) {
+    console.log(bounds.ne, bounds.sw, coordinates.lat, coordinates.lng);
+    if (
+      !type ||
+      !bounds.ne ||
+      !bounds.sw ||
+      !coordinates.lat ||
+      !coordinates.lng
+    ) {
       return;
     }
+
+    setPlaces([]);
     setIsLoading(true);
-    getPlacesData(type, bounds.sw, bounds.ne)
-      .then((data) => {
-        setPlaces(data);
-      })
-      .catch((err) => {
+    setErrorMessage('');
+
+    if (debounceTimeoutId.current) {
+      window.clearTimeout(debounceTimeoutId.current);
+    }
+
+    debounceTimeoutId.current = window.setTimeout(async () => {
+      try {
+        const placesData = await getPlacesData(type, bounds.sw, bounds.ne);
+        setPlaces(placesData);
+      } catch (err) {
         console.error(err);
-      })
-      .finally(() => {
+        setErrorMessage(`Could not fetch data`);
+      } finally {
         setIsLoading(false);
-      });
-  }, [type, bounds, coordinates]);
+      }
+    }, 2000);
+  }, [type, bounds.ne, bounds.sw, coordinates.lat, coordinates.lng]);
+
+  if (!!errorMessage) {
+    return (
+      <Box>
+        <Typography component="h1" color="error">
+          {errorMessage}
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <>

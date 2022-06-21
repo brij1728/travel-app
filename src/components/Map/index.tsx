@@ -6,6 +6,14 @@ import GoogleMapReact from 'google-map-react';
 import { useStyles } from './styles';
 import { IMap } from './types';
 
+const limitDecimals = (num: number | null) => {
+  if (num === null) {
+    return null;
+  }
+  console.log(num, typeof num);
+  return parseFloat(num.toFixed(2));
+};
+
 export const Map: React.FC<IMap> = ({
   coordinates,
   setCoordinates,
@@ -19,8 +27,20 @@ export const Map: React.FC<IMap> = ({
   const isDesktop = useMediaQuery('(min-width: 600px)');
 
   const onChange = (e: any) => {
-    setCoordinates({ lat: e.center.lat, lng: e.center.lng });
-    setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+    setCoordinates({
+      lat: limitDecimals(e.center.lat) as number,
+      lng: limitDecimals(e.center.lng) as number,
+    });
+    setBounds({
+      ne: {
+        lat: limitDecimals(e.marginBounds.ne?.lat) as number,
+        lng: limitDecimals(e.marginBounds.ne?.lng) as number,
+      },
+      sw: {
+        lat: limitDecimals(e.marginBounds.sw?.lat) as number,
+        lng: limitDecimals(e.marginBounds.sw?.lng) as number,
+      },
+    });
   };
 
   return (

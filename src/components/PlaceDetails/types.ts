@@ -18,8 +18,8 @@ export interface IDetails {
   website?: string;
   latitude?: string;
   longitude?: string;
-  rating?: string;
-  num_reviews?: string;
+  rating: number;
+  num_reviews: number;
 }
 
 export interface IPhoto {

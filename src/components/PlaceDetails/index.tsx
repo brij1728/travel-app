@@ -1,3 +1,5 @@
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
 import {
   Box,
   Button,
@@ -11,10 +13,8 @@ import {
   Typography,
 } from '@mui/material';
 
-import { IPlaceDetails } from './types';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhoneIcon from '@mui/icons-material/Phone';
 import { useStyles } from './styles';
+import { IPlaceDetails } from './types';
 
 export const PlaceDetails: React.FC<IPlaceDetails> = ({
   place,

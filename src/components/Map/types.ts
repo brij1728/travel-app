@@ -14,6 +14,6 @@ export interface ICoordinates {
 }
 
 export interface IBounds {
-  ne: number | null;
-  sw: number | null;
+  ne: ICoordinates | null;
+  sw: ICoordinates | null;
 }

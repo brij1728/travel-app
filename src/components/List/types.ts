@@ -6,6 +6,6 @@ export interface IPlaces {
   isLoading: boolean;
   type: string;
   setType: (e: any) => void;
-  rating: string;
+  rating: number;
   setRating(e: any): void;
 }
