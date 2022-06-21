@@ -10,7 +10,7 @@ import {
 import { createRef, useEffect, useRef } from 'react';
 
 import { IPlaces } from './types';
-import { PlaceDetails } from '../PlaceDetails';
+import { PlaceDetails } from '../PlaceDetails/PlaceDetails';
 import { useStyles } from './styles';
 
 export const List: React.FC<IPlaces> = ({

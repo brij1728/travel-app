@@ -1,16 +1,16 @@
 import { Box, Grid, Typography } from '@mui/material';
+import { IBounds, ICoordinates } from '../../components/Map/types';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { getPlacesData } from '../../api';
 import { Header } from '../../components/Header';
-import { List } from '../../components/List';
-import { Map } from '../../components/Map';
-import { IBounds, ICoordinates } from '../../components/Map/types';
 import { IDetails } from '../../components/PlaceDetails/types';
+import { List } from '../../components/List/List';
+import { Map } from '../../components/Map/Map';
+import { getPlacesData } from '../../api';
 
 export const Home = () => {
   const [places, setPlaces] = useState<IDetails[]>([]);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(4.5);
   const [errorMessage, setErrorMessage] = useState('');
 
   const filteredPlaces = useMemo(() => {
