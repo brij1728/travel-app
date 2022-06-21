@@ -1,4 +1,4 @@
-import { IDetails } from '../PlaceDetails/types';
+import { IBounds, ICoordinates, IDetails } from '../../types';
 
 export interface IMap {
   setCoordinates: (coord: ICoordinates) => void;
@@ -6,14 +6,4 @@ export interface IMap {
   coordinates: ICoordinates;
   places: IDetails[];
   setChildClicked: (child: any) => void;
-}
-
-export interface ICoordinates {
-  lat: number;
-  lng: number;
-}
-
-export interface IBounds {
-  ne: ICoordinates | null;
-  sw: ICoordinates | null;
 }

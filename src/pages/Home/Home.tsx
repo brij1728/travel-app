@@ -1,9 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { IBounds, ICoordinates } from '../../components/Map/types';
+import { IBounds, ICoordinates, IDetails } from '../../types';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Header } from '../../components/Header';
-import { IDetails } from '../../components/PlaceDetails/types';
 import { List } from '../../components/List/List';
 import { Map } from '../../components/Map/Map';
 import { getPlacesData } from '../../api';

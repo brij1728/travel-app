@@ -1,4 +1,4 @@
-import { IDetails } from '../PlaceDetails/types';
+import { IDetails } from '../../types';
 
 export interface IPlaces {
   places: IDetails[];

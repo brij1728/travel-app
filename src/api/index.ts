@@ -1,11 +1,6 @@
-import axios from 'axios';
+import { IDetails, RapidAPIResponse } from '../types';
 
-import {
-  IAward,
-  ICuisine,
-  IDetails,
-  IPhoto,
-} from '../components/PlaceDetails/types';
+import axios from 'axios';
 
 const parseStringToNumber = (str?: string): number => {
   if (str === undefined) {
@@ -13,24 +8,6 @@ const parseStringToNumber = (str?: string): number => {
   }
   const num = parseFloat(str);
   return isNaN(num) ? 0 : num;
-};
-
-export type RapidAPIResponse = {
-  name?: string;
-  photo?: IPhoto;
-  price_level?: string;
-  ranking?: string;
-  awards?: IAward[];
-  cuisine?: ICuisine[];
-  location_id: string;
-  address: string;
-  phone?: string;
-  web_url: string;
-  website?: string;
-  latitude?: string;
-  longitude?: string;
-  rating?: string;
-  num_reviews?: string;
 };
 
 export const getPlacesData = async (
