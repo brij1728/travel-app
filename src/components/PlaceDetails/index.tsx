@@ -52,7 +52,7 @@ export const PlaceDetails: React.FC<IPlaceDetails> = ({
                   readOnly
                 />
                 <Typography gutterBottom variant="subtitle1">
-                  out of {place.num_reviews}
+                  {place.num_reviews} reviews
                 </Typography>
               </>
             ) : (
